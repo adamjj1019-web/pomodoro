@@ -10,4 +10,47 @@ let timer = null;
 let time = 1500; 
 let running = false;
 let cycle = 1;
-let isWork = true;
+let isworking = true;
+
+function updateDisplay() {
+  let minute = Math.floor(time / 60);
+  let seconds = time % 60;
+  timeEl.textContent = `${minute}:${seconds < 10 ? "0" : ""}${seconds}`;
+  document.title = `${minute}:${seconds < 10 ? "0" : ""}${seconds} - Pomodoro`;
+}
+
+startBtn.addEventListener("click", function() {
+  if (running) return;
+
+  running = true;
+  statusEl.textContent = isworking ? "Working..." : "Break Time";
+  statusEl.style.color = isworking ? "#2ecc71" : "#e74c3c";
+
+  timer = setInterval(function() {
+    time--;
+    updateDisplay();
+
+    if (time <= 0) {
+      clearInterval(timer);
+      running = false;
+
+      if (isworking) {
+        if (cycle >= 4) {
+          statusEl.textContent = "All Done!";
+          return;
+        }
+        isworking = false;
+        time = 300; 
+        cycleEl.textContent = `Cycle ${cycle}/4`;
+      } else {
+        isworking = true;
+        time = 1500; 
+      }
+
+      updateDisplay();
+      startBtn.click();
+    }
+  }, 1000);
+});
+
+

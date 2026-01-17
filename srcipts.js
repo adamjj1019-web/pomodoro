@@ -54,3 +54,23 @@ startBtn.addEventListener("click", function() {
 });
 
 
+stopBtn.addEventListener("click", function() {
+  clearInterval(timer);
+  running = false;
+  statusEl.textContent = "Paused";
+  statusEl.style.color = "#f39c12";
+});
+
+resetBtn.addEventListener("click", function() {
+  clearInterval(timer);
+  running = false;
+  time = 1500;
+  cycle = 1;
+  isWork = true;
+  statusEl.textContent = "Ready";
+  statusEl.style.color = "#2ecc71";
+  cycleEl.textContent = "Cycle 1/4";
+  updateDisplay();
+});
+
+updateDisplay();

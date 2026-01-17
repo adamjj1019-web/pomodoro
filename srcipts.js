@@ -1,9 +1,9 @@
 const timeEl = document.getElementById('time');
 const statusEl = document.getElementById('status');
 const cycleEl = document.getElementById('cycle');
-const startBtn = document.getElementById('startBtn');
-const stopBtn = document.getElementById('stopBtn');
-const resetBtn = document.getElementById('resetBtn');
+const startBtn = document.getElementById('start');
+const stopBtn = document.getElementById('stop');
+const resetBtn = document.getElementById('reset');
 
 
 let timer = null;
@@ -41,6 +41,7 @@ startBtn.addEventListener("click", function() {
         }
         isworking = false;
         time = 300; 
+        cycle++;
         cycleEl.textContent = `Cycle ${cycle}/4`;
       } else {
         isworking = true;
@@ -66,7 +67,7 @@ resetBtn.addEventListener("click", function() {
   running = false;
   time = 1500;
   cycle = 1;
-  isWork = true;
+  isworking = true;
   statusEl.textContent = "Ready";
   statusEl.style.color = "#2ecc71";
   cycleEl.textContent = "Cycle 1/4";
